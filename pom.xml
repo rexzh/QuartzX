@@ -14,26 +14,28 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <jackson.version>2.3.3</jackson.version>
         <spring.version>4.0.6.RELEASE</spring.version>
+        <mysql.version>5.1.39</mysql.version>
+        <mongo.version>2.12.1</mongo.version>
     </properties>
 
     <build>
         <finalName>data-collector</finalName>
         <plugins>
-			<plugin>
-				<groupId>org.apache.tomcat.maven</groupId>
-				<artifactId>tomcat7-maven-plugin</artifactId>
-				<version>2.2</version>
-				<configuration>
-					<path>/datacollector</path>
-					<!--systemProperties>
-						<http.proxyHost>proxy-txn.austin.hp.com</http.proxyHost>
-						<http.proxyPort>8080</http.proxyPort>
-						<https.proxyHost>proxy-txn.atl.hp.com</https.proxyHost>
-						<https.proxyPort>8080</https.proxyPort>
-					</systemProperties-->
-					<port>8000</port>
-				</configuration>
-			</plugin>
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <path>/datacollector</path>
+                    <!--systemProperties>
+                        <http.proxyHost>proxy-txn.austin.hp.com</http.proxyHost>
+                        <http.proxyPort>8080</http.proxyPort>
+                        <https.proxyHost>proxy-txn.atl.hp.com</https.proxyHost>
+                        <https.proxyPort>8080</https.proxyPort>
+                    </systemProperties-->
+                    <port>8000</port>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -148,11 +150,18 @@
             <version>${jackson.version}</version>
         </dependency>
 
+        <!-- MySQL -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.version}</version>
+        </dependency>
+
         <!-- MongoDB -->
         <dependency>
             <groupId>org.mongodb</groupId>
             <artifactId>mongo-java-driver</artifactId>
-            <version>2.12.1</version>
+            <version>${mongo.version}</version>
         </dependency>
 
         <!-- Test -->

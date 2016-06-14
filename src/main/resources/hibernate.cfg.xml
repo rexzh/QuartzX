@@ -13,7 +13,7 @@
 
         <!-- Assume test is the database name -->
         <property name="hibernate.connection.url">
-            jdbc:mysql://localhost/QuartzX?useSSL=false
+            jdbc:mysql://localhost/QuartzX?useSSL=false&amp;serverTimezone=UTC
         </property>
         <property name="hibernate.connection.username">
             root

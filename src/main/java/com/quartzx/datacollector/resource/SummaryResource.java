@@ -3,9 +3,7 @@ package com.quartzx.datacollector.resource;
 import com.quartzx.datacollector.service.SummaryService;
 
 import javax.inject.Inject;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -27,7 +25,15 @@ public class SummaryResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response statictic() {
-
         return Response.ok().entity(service.getResult()).build();
+    }
+
+    @POST
+    @Path("/upload")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response uploadData(String data) {
+        //TODO:
+        return null;
     }
 }

@@ -11,12 +11,13 @@
 
     <properties>
         <logback.version>1.1.2</logback.version>
-        <jcloverslf4j.version>1.7.12</jcloverslf4j.version>
+        <slf4j.version>1.7.12</slf4j.version>
         <jersey.version>2.22.2</jersey.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <jackson.version>2.3.3</jackson.version>
         <spring.version>4.0.6.RELEASE</spring.version>
-        <mysql.version>5.1.39</mysql.version>
+        <hibernate.version>3.6.10.Final</hibernate.version>
+        <mysql.version>6.0.2</mysql.version>
         <mongo.version>2.12.1</mongo.version>
     </properties>
 
@@ -64,6 +65,14 @@
     </dependencyManagement>
 
     <dependencies>
+        <!-- Servlet -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+            <scope>provided</scope>
+        </dependency>
+
         <!--logging-->
         <dependency>
             <groupId>ch.qos.logback</groupId>
@@ -73,10 +82,10 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>jcl-over-slf4j</artifactId>
-            <version>${jcloverslf4j.version}</version>
+            <version>${slf4j.version}</version>
         </dependency>
 
-        <!-- Spring -->
+        <!-- spring -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
@@ -110,7 +119,7 @@
             <version>1</version>
         </dependency>
 
-        <!--Jersey-->
+        <!--jersey-->
         <dependency>
             <groupId>org.glassfish.jersey.core</groupId>
             <artifactId>jersey-client</artifactId>
@@ -152,11 +161,18 @@
             <version>${jackson.version}</version>
         </dependency>
 
-        <!-- MySQL -->
+        <!-- mySQL -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>${mysql.version}</version>
+        </dependency>
+
+        <!--hibernate-->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>${hibernate.version}</version>
         </dependency>
 
         <!-- MongoDB -->

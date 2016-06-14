@@ -29,7 +29,7 @@ public class DaoTest{
     //ISummaryDao dao;
 
     @Test
-    public void ReadTest() {
+    public void readTest() {
         ISummaryDao dao = new SummaryDao();
         Summarize s = dao.analysis();
         assertEquals(100, s.getAverage(), 0.001);

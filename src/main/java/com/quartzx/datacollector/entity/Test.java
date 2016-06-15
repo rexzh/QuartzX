@@ -1,8 +1,6 @@
 package com.quartzx.datacollector.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -13,6 +11,7 @@ public class Test implements Serializable{
     Long id;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId(){return id;}
     public void setId(Long id){this.id = id;}
 

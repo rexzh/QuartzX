@@ -1,4 +1,4 @@
-package com.rextoy.analytics;
+package com.quartzx.datacollector;
 
 import org.glassfish.jersey.server.ResourceConfig;
 

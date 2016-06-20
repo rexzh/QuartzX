@@ -28,12 +28,5 @@ public class SummaryResource {
         return Response.ok().entity(service.getResult()).build();
     }
 
-    @POST
-    @Path("/upload")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response uploadData(String data) {
-        //TODO:
-        return null;
-    }
+
 }

@@ -11,7 +11,6 @@
             com.mysql.cj.jdbc.Driver
         </property>
 
-        <!-- Assume test is the database name -->
         <property name="hibernate.connection.url">
             jdbc:mysql://localhost/QuartzX?useSSL=false&amp;serverTimezone=UTC
         </property>
@@ -23,7 +22,7 @@
         </property>
 
         <!--mapping package="com.quartzx.datacollector.entity"/-->
-        <mapping class="com.quartzx.datacollector.entity.Test"/>
+        <!--mapping class="com.quartzx.datacollector.entity.Test"/-->
 
         <!-- List of XML mapping files -->
         <!--mapping resource="Employee.hbm.xml"/-->

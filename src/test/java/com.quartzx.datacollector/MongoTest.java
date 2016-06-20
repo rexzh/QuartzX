@@ -1,6 +1,7 @@
 package com.quartzx.datacollector;
 
-import com.quartzx.datacollector.dao.RDBDao;
+import com.mongodb.client.MongoDatabase;
+import com.quartzx.datacollector.utility.MongoManager;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -9,16 +10,31 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 import org.springframework.test.context.support.DirtiesContextTestExecutionListener;
 
+import javax.inject.Inject;
+
+import static org.junit.Assert.assertEquals;
+
 /**
- * Created by zling on 6/14/2016.
+ * Created by zling on 6/20/2016.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({"classpath:applicationContext.xml"})
 @TestExecutionListeners(listeners = {DependencyInjectionTestExecutionListener.class, DirtiesContextTestExecutionListener.class})
-public class RDBTest {
+public class MongoTest {
+    @Inject
+    private MongoManager mongoMgr;
+
     @Test
-    public void readTest(){
-        RDBDao dao = new RDBDao();
-        dao.findTest();
+    public void testConnectAndFindSystemTable(){
+        MongoDatabase db = mongoMgr.getDatabase();
+        String systemIndex = "system.indexes";
+        boolean found = false;
+        for (String s : db.listCollectionNames()){
+            if(s.equals(systemIndex)) {
+                found = true;
+                break;
+            }
+        }
+        assertEquals(true, found);
     }
 }

@@ -26,4 +26,8 @@
     <logger name="org.jboss" level="WARN" additivity="false">
         <appender-ref ref="STDOUT"/>
     </logger>
+
+    <logger name="org.mongodb" level="INFO" additivity="false">
+        <appender-ref ref="STDOUT"/>
+    </logger>
 </configuration>

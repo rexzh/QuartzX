@@ -18,7 +18,7 @@
         <spring.version>4.0.6.RELEASE</spring.version>
         <hibernate.version>3.6.10.Final</hibernate.version>
         <mysql.version>6.0.2</mysql.version>
-        <mongo.version>2.12.1</mongo.version>
+        <mongo.version>3.2.2</mongo.version>
     </properties>
 
     <build>

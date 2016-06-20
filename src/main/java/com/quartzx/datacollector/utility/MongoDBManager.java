@@ -4,6 +4,7 @@ package com.quartzx.datacollector.utility;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoException;
 import com.mongodb.ServerAddress;
+import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
 
@@ -16,7 +17,7 @@ import java.util.Arrays;
  * Created by zling on 6/15/2016.
  */
 @Named
-public class MongoManager {
+public class MongoDBManager {
     @Inject
     private AppProperty appProperty;
     private MongoDatabase db;
@@ -36,5 +37,9 @@ public class MongoManager {
 
     public MongoDatabase getDatabase() {
         return db;
+    }
+
+    public MongoCollection getCollection(MongoDBCollections collectionName){
+        return db.getCollection(collectionName.getCode());
     }
 }

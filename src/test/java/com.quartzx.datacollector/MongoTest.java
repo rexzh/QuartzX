@@ -1,7 +1,7 @@
 package com.quartzx.datacollector;
 
 import com.mongodb.client.MongoDatabase;
-import com.quartzx.datacollector.utility.MongoManager;
+import com.quartzx.datacollector.utility.MongoDBManager;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -22,7 +22,7 @@ import static org.junit.Assert.assertEquals;
 @TestExecutionListeners(listeners = {DependencyInjectionTestExecutionListener.class, DirtiesContextTestExecutionListener.class})
 public class MongoTest {
     @Inject
-    private MongoManager mongoMgr;
+    private MongoDBManager mongoMgr;
 
     @Test
     public void testConnectAndFindSystemTable(){

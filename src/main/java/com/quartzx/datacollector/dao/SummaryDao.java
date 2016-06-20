@@ -1,9 +1,10 @@
 package com.quartzx.datacollector.dao;
 
-import com.quartzx.datacollector.model.Summarize;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.mongodb.client.MongoCollection;
+import com.quartzx.datacollector.utility.MongoCollectionNames;
+import com.quartzx.datacollector.utility.MongoDBManager;
 
+import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
@@ -11,15 +12,11 @@ import javax.inject.Named;
  */
 @Named
 public class SummaryDao implements ISummaryDao {
-    private static final Logger logger = LoggerFactory.getLogger(SummaryDao.class);
 
-    public Summarize analysis(){
-        logger.debug("=================Entry");
-        Summarize s = new Summarize();
-        s.setAverage(100);
-        s.setSum(300);
-        logger.debug(s.toString());
-        logger.debug("=================Done");
-        return s;
+    @Inject
+    MongoDBManager mongoMgr;
+    public long count(){
+        MongoCollection collection = mongoMgr.getCollection(MongoCollectionNames.Data);
+        return collection.count();
     }
 }

@@ -1,8 +1,7 @@
 package com.quartzx.datacollector.dao;
 
 import com.mongodb.client.MongoCollection;
-import com.quartzx.datacollector.service.ICollectorService;
-import com.quartzx.datacollector.utility.MongoDBCollections;
+import com.quartzx.datacollector.utility.MongoCollectionNames;
 import com.quartzx.datacollector.utility.MongoDBManager;
 import org.bson.Document;
 
@@ -18,7 +17,7 @@ public class CollectorDao implements ICollectorDao {
     private MongoDBManager mongoMgr;
 
     public String persist(String data) {
-        MongoCollection collection = mongoMgr.getCollection(MongoDBCollections.Data);
+        MongoCollection collection = mongoMgr.getCollection(MongoCollectionNames.Data);
         Document doc = new Document()
                 .append("data", data);
         collection.insertOne(doc);

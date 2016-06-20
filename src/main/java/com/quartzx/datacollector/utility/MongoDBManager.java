@@ -39,7 +39,7 @@ public class MongoDBManager {
         return db;
     }
 
-    public MongoCollection getCollection(MongoDBCollections collectionName){
+    public MongoCollection getCollection(MongoCollectionNames collectionName){
         return db.getCollection(collectionName.getCode());
     }
 }

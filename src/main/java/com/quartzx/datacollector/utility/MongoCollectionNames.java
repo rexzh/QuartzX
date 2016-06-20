@@ -3,7 +3,7 @@ package com.quartzx.datacollector.utility;
 /**
  * Created by zling on 6/20/2016.
  */
-public enum MongoDBCollections {
+public enum MongoCollectionNames {
     Data("data");
 
     public String getCode() {
@@ -12,12 +12,12 @@ public enum MongoDBCollections {
 
     private final String code;
 
-    MongoDBCollections(String code) {
+    MongoCollectionNames(String code) {
         this.code = code;
     }
 
-    public static MongoDBCollections fromCode(String code) {
-        for (MongoDBCollections collection : MongoDBCollections.values()) {
+    public static MongoCollectionNames fromCode(String code) {
+        for (MongoCollectionNames collection : MongoCollectionNames.values()) {
             if (collection.code.equals(code))
                 return collection;
         }

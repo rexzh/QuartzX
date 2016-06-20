@@ -14,7 +14,9 @@ public class SummaryService implements ISummaryService {
     @Inject
     private SummaryDao _dao;
 
-    public Summarize getResult(){
-        return _dao.analysis();
+    public Summarize analysis(){
+        Summarize s = new Summarize();
+        s.setSum(_dao.count());
+        return s;
     }
 }

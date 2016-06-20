@@ -25,8 +25,6 @@ public class SummaryResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response statictic() {
-        return Response.ok().entity(service.getResult()).build();
+        return Response.ok().entity(service.analysis()).build();
     }
-
-
 }

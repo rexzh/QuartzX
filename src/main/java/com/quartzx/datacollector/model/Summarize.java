@@ -5,7 +5,6 @@ package com.quartzx.datacollector.model;
  */
 public class Summarize {
     private float sum;
-    private float average;
 
     public float getSum(){
         return sum;
@@ -13,13 +12,5 @@ public class Summarize {
 
     public void setSum(float value) {
         sum = value;
-    }
-
-    public float getAverage(){
-        return average;
-    }
-
-    public void setAverage(float value) {
-        average = value;
     }
 }

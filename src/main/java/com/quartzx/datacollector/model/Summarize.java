@@ -4,13 +4,13 @@ package com.quartzx.datacollector.model;
  * Created by zling on 5/23/2016.
  */
 public class Summarize {
-    private float sum;
+    private long sum;
 
-    public float getSum(){
+    public long getSum(){
         return sum;
     }
 
-    public void setSum(float value) {
+    public void setSum(long value) {
         sum = value;
     }
 }

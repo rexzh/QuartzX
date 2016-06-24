@@ -2,6 +2,7 @@ package com.quartzx.datacollector;
 
 import com.mongodb.client.MongoDatabase;
 import com.quartzx.datacollector.utility.MongoDBManager;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -25,6 +26,7 @@ public class MongoTest {
     private MongoDBManager mongoMgr;
 
     @Test
+    @Ignore("ConnectDB")
     public void testConnectAndFindSystemTable(){
         MongoDatabase db = mongoMgr.getDatabase();
         String systemIndex = "system.indexes";

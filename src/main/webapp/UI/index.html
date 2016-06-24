@@ -36,7 +36,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</a>
-				<a class="brand"><img src="img/logo.jpg" style="height: 36px" /><span>&nbsp;&nbsp;{{brand}}</span></a>
+				<a class="brand"><img src="img/logo_white.png" style="height: 36px" /><span>&nbsp;&nbsp;{{brand}}</span></a>
 			</div>
 		</div>
 	</div>
@@ -86,13 +86,7 @@
                 if ($(this).attr('href') == window.location.hash) {
                     $(this).parent().addClass('active');
                 } else {
-                    var hash = window.location.hash;
-                    if (hash.startsWith('#/block/') || hash.startsWith('#/sensor/') || hash.startsWith('#/history/')) {
-                        if ($(this).attr('href') == '#/monitor/')
-                            $(this).parent().addClass('active');
-                    } else {
-                        $(this).parent().removeClass('active');
-                    }
+                    $(this).parent().removeClass('active');
                 }
             });
 

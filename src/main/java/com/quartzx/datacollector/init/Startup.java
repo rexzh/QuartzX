@@ -18,6 +18,7 @@ public class Startup implements WebApplicationInitializer {
     private static final Logger logger = LoggerFactory.getLogger(Startup.class);
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
-        logger.debug("Entry...");
+        logger.debug("========================Start up entry");
+        logger.debug("========================Start up complete");
     }
 }

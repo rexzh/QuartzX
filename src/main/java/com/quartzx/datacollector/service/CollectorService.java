@@ -14,7 +14,7 @@ public class CollectorService implements ICollectorService {
     @Inject
     private ICollectorDao dao;
 
-    public String persistRecord(String data){
+    public String persistRecord(String data) {
         //TODO:Parse JSON and save
 
         return dao.persist(data);

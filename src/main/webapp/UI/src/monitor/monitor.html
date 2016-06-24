@@ -1,0 +1,31 @@
+﻿<ul class="breadcrumb">
+	<li>
+		<i class="icon-home"></i>
+		<a href="#/dashboard" ng-click="resetMenu()">{{home}}</a> 
+		<i class="icon-angle-right"></i>
+	</li>
+	<li><a>{{monitor}}</a></li>
+</ul>
+
+<div class="row-fluid" ng-repeat="box in boxes">
+    <div class="box span12">
+        <div class="box-header">
+            <h2><i class="icon-th-list"></i><span class="break"></span>{{box.boxName}}</h2>
+        </div>
+        <div class="box-content" ng-repeat="row in box.rows">            
+                <div class="span1"></div>
+
+            <div metro-small-button ng-repeat="block in row"
+                 ng-click="click(box, block)"
+                 btn-span="span1"
+                 btn-text="{{block.blockName}}"
+                 btn-icon="icon-th"
+                 btn-color="{{block.color}}"
+                 btn-note="{{block.total}}" />
+                
+            <div class="span1"></div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+

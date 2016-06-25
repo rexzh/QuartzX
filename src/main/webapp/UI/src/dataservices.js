@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-	var baseUrl = '/v1.0/summary';
+	var baseUrl = '/data-collector/v1.0';
 	var svc = angular.module('data.service', ['ngResource']);
 
 	function errMsg(url, response) {
@@ -31,7 +31,16 @@
             });
 
 	    return delay.promise;
-	};	
+	};
+
+	svc.factory('SummaryResource', function($resource, $q) {
+	    return {
+    	    query: function () {
+    	        var url = baseUrl + "/summary";
+    	        return simpleQuery($resource, $q, url);
+    	    }
+    	}
+	});
 
 	svc.factory('AboutResource', function ($resource, $q) {
 	    return {

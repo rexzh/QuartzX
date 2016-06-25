@@ -336,7 +336,7 @@
                             series: {
                                 stack: 0,
                                 lines: { show: false, fill: true, steps: false },
-                                bars: { show: true, barWidth: 86400 * 600, align: 'center' },//Note: Width = 86400 * 1000 * 0.6
+                                bars: { show: true, barWidth: 60 * 600, align: 'center' },//Note: Width = 60 * 1000 * 0.6
                             },
                             colors: ["#FABB3D", "#FA5833"],
                             xaxis: {

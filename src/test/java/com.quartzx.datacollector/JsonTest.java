@@ -13,6 +13,7 @@ import org.springframework.test.context.support.DirtiesContextTestExecutionListe
 
 
 import java.time.ZonedDateTime;
+import java.util.Date;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
@@ -48,13 +49,7 @@ public class JsonTest {
         assertEquals("12345", data.getId());
         assertEquals("00310001000000000000003400C6000000000000000000000C123456789999555522221111", data.getTagId());
 
-        ZonedDateTime date = data.getDeviceTime();
-        assertEquals(2016, date.getYear());
-        assertEquals(6, date.getMonthValue());
-        assertEquals(24, date.getDayOfMonth());
-
-        assertEquals(16, date.getHour());
-        assertEquals(43, date.getMinute());
-        assertEquals(46, date.getSecond());
+        long ep = data.getDeviceTime();
+        assertEquals(1466786626457L, ep);
     }
 }

@@ -1,7 +1,10 @@
 package com.quartzx.datacollector.model;
 
+import com.quartzx.datacollector.CommonException;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.ZonedDateTime;
-import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -35,12 +38,13 @@ public class RFIDData {
     }
 
     public void setTimestamp(String timestamp){
+
         _timestamp = timestamp;
     }
 
-    public ZonedDateTime getDeviceTime(){
-        ZonedDateTime d = ZonedDateTime.parse(_timestamp);
-        return d;
+    public long getDeviceTime(){
+        ZonedDateTime zdt = ZonedDateTime.parse(_timestamp);
+        return zdt.toInstant().toEpochMilli();
     }
 
     private Date _serverTime;

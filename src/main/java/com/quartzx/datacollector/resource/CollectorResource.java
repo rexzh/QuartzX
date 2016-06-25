@@ -20,7 +20,6 @@ public class CollectorResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response upload(String data) {
         String id = service.persistRecord(data);
-
         return Response.ok().entity(id).build();
     }
 }

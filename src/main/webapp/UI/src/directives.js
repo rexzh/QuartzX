@@ -341,7 +341,7 @@
                             colors: ["#FABB3D", "#FA5833"],
                             xaxis: {
                                 mode: "time",
-                                minTickSize: [1, "day"]
+                                minTickSize: [1, "minute"]
                             }
                         });
                         

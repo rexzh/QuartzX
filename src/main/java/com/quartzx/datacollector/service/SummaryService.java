@@ -5,6 +5,7 @@ import com.quartzx.datacollector.model.Summarize;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -29,6 +30,16 @@ public class SummaryService implements ISummaryService {
                 map.put(trunc, c + 1);
             } else {
                 map.put(trunc, 1);
+            }
+        }
+        Long min = Collections.min(map.keySet());
+        Long max = Collections.max(map.keySet());
+        if (max < min + 10 * 60 * 1000) {
+            max = min + 10 * 60 * 1000;
+        }
+        for (long x = min; x <= max; x += 60 * 1000) {
+            if (!map.containsKey(x)) {
+                map.put(x, 0);
             }
         }
 

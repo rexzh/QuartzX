@@ -32,14 +32,17 @@ public class SummaryService implements ISummaryService {
                 map.put(trunc, 1);
             }
         }
-        Long min = Collections.min(map.keySet());
-        Long max = Collections.max(map.keySet());
-        if (max < min + 10 * 60 * 1000) {
-            max = min + 10 * 60 * 1000;
-        }
-        for (long x = min; x <= max; x += 60 * 1000) {
-            if (!map.containsKey(x)) {
-                map.put(x, 0);
+
+        if(!map.isEmpty()) {
+            Long min = Collections.min(map.keySet());
+            Long max = Collections.max(map.keySet());
+            if (max < min + 10 * 60 * 1000) {
+                max = min + 10 * 60 * 1000;
+            }
+            for (long x = min; x <= max; x += 60 * 1000) {
+                if (!map.containsKey(x)) {
+                    map.put(x, 0);
+                }
             }
         }
 

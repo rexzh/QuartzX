@@ -1,4 +1,4 @@
-﻿app.controller('DashboardCtrl', function ($scope, $rootScope, $interval, $L, resetMenu) {
+﻿app.controller('DashboardCtrl', function ($scope, $rootScope, SummaryResource, $interval, $L, resetMenu) {
     var NORMAL = "Normal", WARNING = "Warning", ERROR = "Error", UNKNOWN = "Unknown";
     var mapStatusColor = {
         'Normal': 'green',
@@ -25,47 +25,28 @@
     var frequency = localStorage.getItem('frequency') || 5000;
 
     function refreshMonitor() {
-        StatusResource.queryGlobal().then(function (data) {
-            $scope.statistic = data.statistic;
-            $scope.perBox = data.perBox;
-
+        SummaryResource.query('ovl').then(function (data) {
+            console.log(data);
+            //$scope.statistic = data.statistic;
+            $scope.data = data;
         }, function (err) {
             err.scope = $scope;
             $scope.$emit('ajaxError', err);
         });
     };
 
-    //refreshMonitor();
-    //var p = $interval(refreshMonitor, frequency);
+    refreshMonitor();
+    var p = $interval(refreshMonitor, frequency);
 
     var sysinfo = {
         "database": {}, "dongle": {}, "service": {}, "server": {}
     };
 
-    
-    function refreshSystem() {
-        SystemResource.query().then(function (data) {
-            sysinfo.server.status = $L(NORMAL);
-            sysinfo.server.color = mapStatusColor[NORMAL];
-
-            $scope.sysinfo = sysinfo;
-        }, function (data) {
-            sysinfo.server.status = $L(ERROR);            
-            $scope.sysinfo = sysinfo;
-        });
-    };
-    //refreshSystem();
-    //var q = $interval(refreshSystem, frequency);
 
     $scope.$on('$destroy', function () {
         if (angular.isDefined(p)) {
             $interval.cancel(p);
             p = undefined;
-        }
-
-        if (angular.isDefined(q)) {
-            $interval.cancel(q);
-            q = undefined;
         }
     })
 });

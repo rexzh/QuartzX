@@ -35,8 +35,8 @@
 
 	svc.factory('SummaryResource', function($resource, $q) {
 	    return {
-    	    query: function () {
-    	        var url = baseUrl + "/summary";
+    	    query: function (type) {
+    	        var url = baseUrl + "/summary/" + type;
     	        return simpleQuery($resource, $q, url);
     	    }
     	}
@@ -45,7 +45,7 @@
 	svc.factory('AboutResource', function ($resource, $q) {
 	    return {
 	        query: function () {
-	            var url = baseUrl + "about/";
+	            var url = baseUrl + "/about";
 	            return simpleQuery($resource, $q, url);
 	        }
 	    }
@@ -54,7 +54,7 @@
     svc.factory('SystemResource', function ($resource, $q) {
         return {
             query: function () {
-                var url = baseUrl + "system/";
+                var url = baseUrl + "/system";
                 return simpleQuery($resource, $q, url);
             }
         }

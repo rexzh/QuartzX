@@ -1,15 +1,5 @@
 ﻿app.controller('MonitorCtrl', function ($scope, $interval, SummaryResource, $location, $L, resetMenu) {
-    var mapStatusColor = {
-        'Normal': 'green',
-        'Warning': 'orange',
-        'Danger': 'red'
-    };
 
-    $scope.click = function(box, block) {
-        if (block.total != 0) {
-            $location.path("/block/" + box.boxId + "/" + block.blockId);
-        }
-    }
 
     $scope.resetMenu = resetMenu;
 
@@ -20,7 +10,7 @@
 
 
     function refreshMonitor() {
-        SummaryResource.query().then(function (data) {
+        SummaryResource.query('agg').then(function (data) {
             var x = [];
             var r = data.minuteAggregateMap;
             for(var p in r) {

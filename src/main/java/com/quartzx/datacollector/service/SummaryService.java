@@ -19,7 +19,6 @@ public class SummaryService implements ISummaryService {
 
     public Summarize analysis() {
         Summarize s = new Summarize();
-        s.setSum(_dao.count());
 
         List<Long> list = _dao.dataInHour();
         HashMap<Long, Integer> map = new HashMap<>();
@@ -47,6 +46,12 @@ public class SummaryService implements ISummaryService {
         }
 
         s.setMinuteAggregateMap(map);
+        return s;
+    }
+
+    public Summarize overall(){
+        Summarize s = new Summarize();
+        s.setSum(_dao.count());
         return s;
     }
 }

@@ -23,8 +23,16 @@ public class SummaryResource {
      */
 
     @GET
+    @Path("agg")
     @Produces(MediaType.APPLICATION_JSON)
     public Response statictic() {
         return Response.ok().entity(service.analysis()).build();
+    }
+
+    @GET
+    @Path("ovl")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response overall() {
+        return Response.ok().entity(service.overall()).build();
     }
 }

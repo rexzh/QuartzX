@@ -1,6 +1,11 @@
 (function () {
     'use strict';
-	var baseUrl = '/data-collector/v1.0';
+    
+    var baseUrl = '/v1.0';
+    if(window.location.href.indexOf('data-collector') > 0)
+        baseUrl = '/data-collector/v1.0';
+
+
 	var svc = angular.module('data.service', ['ngResource']);
 
 	function errMsg(url, response) {

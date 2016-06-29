@@ -1,6 +1,6 @@
 package com.quartzx.datacollector.service;
 
-import com.quartzx.datacollector.dao.ICollectorDao;
+import com.quartzx.datacollector.dao.IRFIDDataDao;
 import com.quartzx.datacollector.model.RFIDData;
 import com.quartzx.datacollector.utility.JsonConverter;
 
@@ -14,7 +14,7 @@ import javax.inject.Named;
 public class CollectorService implements ICollectorService {
 
     @Inject
-    private ICollectorDao dao;
+    private IRFIDDataDao dao;
 
     public String persistRecord(String json) {
         RFIDData data = JsonConverter.toObject(json, RFIDData.class);

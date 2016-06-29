@@ -12,6 +12,7 @@ import org.bson.Document;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -23,6 +24,19 @@ import java.util.List;
 public class RFIDDataDao implements IRFIDDataDao {
     @Inject
     MongoDBManager mongoMgr;
+
+    public String persist(RFIDData data) {
+        MongoCollection collection = mongoMgr.getCollection(MongoCollectionNames.Data);
+        Document doc = new Document()
+                .append("deviceId", data.getId())
+                .append("tagId", data.getTagId())
+                .append("deviceTime", data.getDeviceTime())
+                .append("serverTime", ZonedDateTime.now().toInstant().toEpochMilli());
+
+        collection.insertOne(doc);
+
+        return doc.get("_id").toString();
+    }
 
     public long count() {
         MongoCollection collection = mongoMgr.getCollection(MongoCollectionNames.Data);

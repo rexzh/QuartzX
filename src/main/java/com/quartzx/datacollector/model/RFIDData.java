@@ -31,12 +31,16 @@ public class RFIDData {
         _tagId = tagId;
     }
 
-    //Note:These attribute/property are used for json serialize. Use getDeviceTime() in business logic.
+    //Note:These attribute/property are used for json serialize. Use get/setDeviceTime() in business logic.
     private String _timestamp;
-    public void setTimestamp(String timestamp)    {
+    public void setTimestamp(String timestamp) {
         _timestamp = timestamp;
         ZonedDateTime zdt = ZonedDateTime.parse(_timestamp);
         _deviceTime = zdt.toInstant().toEpochMilli();
+    }
+
+    public String getTimestamp() {
+        return _timestamp;
     }
 
     private long _deviceTime;

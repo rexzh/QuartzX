@@ -6,6 +6,5 @@ import com.quartzx.datacollector.model.Summarize;
  * Created by zling on 5/23/2016.
  */
 public interface ISummaryService {
-    Summarize analysis();
-    Summarize overall();
+    Summarize summary();
 }

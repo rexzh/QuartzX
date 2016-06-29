@@ -25,7 +25,7 @@
     var frequency = localStorage.getItem('frequency') || 5000;
 
     function refreshMonitor() {
-        SummaryResource.query('ovl').then(function (data) {
+        SummaryResource.query().then(function (data) {
             console.log(data);
             //$scope.statistic = data.statistic;
             $scope.data = data;

@@ -16,13 +16,4 @@ public class Summarize {
     public void setSum(long value) {
         sum = value;
     }
-
-    private HashMap<Long, Integer> _map;
-    public void setMinuteAggregateMap(HashMap<Long, Integer> map) {
-        _map = map;
-    }
-
-    public HashMap<Long, Integer> getMinuteAggregateMap(){
-        return _map;
-    }
 }

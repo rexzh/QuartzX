@@ -1,0 +1,14 @@
+package com.quartzx.datacollector.dao;
+
+import com.quartzx.datacollector.model.RFIDData;
+
+import java.util.List;
+
+/**
+ * Created by zling on 6/29/2016.
+ */
+public interface IRFIDDataDao {
+    long count();
+    List<Long> dataInHour();
+    List<RFIDData> searchLatest();
+}

@@ -1,4 +1,4 @@
-﻿app.controller('MonitorCtrl', function ($scope, $interval, SummaryResource, $location, $L, resetMenu) {
+﻿app.controller('MonitorCtrl', function ($scope, $interval, MonitorResource, $location, $L, resetMenu) {
 
 
     $scope.resetMenu = resetMenu;
@@ -10,7 +10,7 @@
 
 
     function refreshMonitor() {
-        SummaryResource.query('agg').then(function (data) {
+        MonitorResource.query().then(function (data) {
             var x = [];
             var r = data.minuteAggregateMap;
             for(var p in r) {

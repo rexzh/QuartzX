@@ -33,14 +33,50 @@
 	    return delay.promise;
 	};
 
+	function arrayQuery($resource, $q, url) {
+        var res = $resource(url);
+        var delay = $q.defer();
+        res.query(
+            function (response) {
+                if (response) {
+                    delay.resolve(response);
+                } else {
+                    delay.reject(errMsg(url, response));
+                }
+            },
+            function (response) {
+                delay.reject(errMsg(url, response));
+            });
+
+        return delay.promise;
+    };
+
 	svc.factory('SummaryResource', function($resource, $q) {
 	    return {
-    	    query: function (type) {
-    	        var url = baseUrl + "/summary/" + type;
+    	    query: function () {
+    	        var url = baseUrl + "/summary";
     	        return simpleQuery($resource, $q, url);
     	    }
     	}
 	});
+
+	svc.factory('MonitorResource', function($resource, $q) {
+        return {
+            query: function () {
+                var url = baseUrl + "/monitor";
+                return simpleQuery($resource, $q, url);
+            }
+        }
+    });
+
+    svc.factory('MessageResource', function($resource, $q) {
+        return {
+            query: function () {
+                var url = baseUrl + "/message";
+                return arrayQuery($resource, $q, url);
+            }
+        }
+    });
 
 	svc.factory('AboutResource', function ($resource, $q) {
 	    return {

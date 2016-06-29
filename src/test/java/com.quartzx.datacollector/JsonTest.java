@@ -31,7 +31,7 @@ public class JsonTest {
         s.setSum(100);
 
         String json = JsonConverter.toJsonString(s);
-        assertEquals("{\"sum\":100,\"minuteAggregateMap\":null}", json);
+        assertEquals("{\"sum\":100}", json);
     }
 
     @Test

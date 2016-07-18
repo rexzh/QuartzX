@@ -7,7 +7,10 @@ import java.util.List;
  * Created by Rex on 2016/7/17.
  */
 public class UserData {
-    public UserData(){
+
+    public UserData() {
+        _name = "";
+        _password = "";
         _devices = new ArrayList<>();
     }
 

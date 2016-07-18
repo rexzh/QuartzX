@@ -10,8 +10,8 @@ import java.util.List;
 public interface IRFIDDataDao {
     String persist(RFIDData data);
 
-    long count();
-    List<Long> dataInHour();
-    List<RFIDData> dataInRange(int seconds);
-    List<RFIDData> searchLatest();
+    long count(List<String> devices);
+    List<Long> dataInHour(List<String> devices);
+    List<RFIDData> dataInRange(List<String> devices, int seconds);
+    List<RFIDData> searchLatest(List<String> devices);
 }

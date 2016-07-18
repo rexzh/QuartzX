@@ -1,11 +1,13 @@
 package com.quartzx.datacollector.service;
 
 import com.quartzx.datacollector.dao.IRFIDDataDao;
+import com.quartzx.datacollector.dao.IUserDataDao;
 import com.quartzx.datacollector.model.RFIDData;
 import com.quartzx.datacollector.model.UserData;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,10 +16,17 @@ import java.util.List;
 @Named
 public class MessageService implements IMessageService {
     @Inject
-    IRFIDDataDao _dao;
+    IRFIDDataDao _rfidDao;
+    @Inject
+    IUserDataDao _usrDao;
 
     public List<RFIDData> searchLatest(UserData user){
-        //TODO:
-        return _dao.searchLatest();
+        UserData ud = _usrDao.getUserData(user.getUsername());
+
+        if(ud.getPassword().equals(user.getPassword())) {
+            return _rfidDao.searchLatest(ud.getDevices());
+        } else {
+            return new ArrayList<>();
+        }
     }
 }

@@ -1,5 +1,6 @@
 package com.quartzx.datacollector.dao;
 
+import com.mongodb.BasicDBObject;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
@@ -38,17 +39,21 @@ public class RFIDDataDao implements IRFIDDataDao {
         return doc.get("_id").toString();
     }
 
-    public long count() {
+    public long count(List<String> devices) {
         MongoCollection collection = mongoMgr.getCollection(MongoCollectionNames.Data);
-        return collection.count();
+        return collection.count(new BasicDBObject("deviceId", new BasicDBObject("$in", devices)));
     }
 
-    public List<Long> dataInHour() {
+    public List<Long> dataInHour(List<String> devices) {
+        //TODO:
         MongoCollection coll = mongoMgr.getCollection(MongoCollectionNames.Data);
         Date d = new Date();
         long ep = d.toInstant().toEpochMilli() - 1000 * 3600;
 
-        FindIterable result = coll.find(Filters.gt("serverTime", ep));
+        FindIterable result = coll.find(Filters.and(
+                Filters.gt("serverTime", ep),
+                new BasicDBObject("deviceId", new BasicDBObject("$in", devices))
+        ));
         List<Long> list = new ArrayList<>();
         for (Object obj : result) {
             Document doc = (Document) obj;
@@ -59,12 +64,16 @@ public class RFIDDataDao implements IRFIDDataDao {
         return list;
     }
 
-    public List<RFIDData> dataInRange(int seconds){
+    public List<RFIDData> dataInRange(List<String> devices, int seconds){
+        //TODO:
         MongoCollection coll = mongoMgr.getCollection(MongoCollectionNames.Data);
         Date d = new Date();
         long ep = d.toInstant().toEpochMilli() - 1000 * seconds;
 
-        FindIterable result = coll.find(Filters.gt("serverTime", ep));
+        FindIterable result = coll.find(Filters.and(
+                Filters.gt("serverTime", ep),
+                new BasicDBObject("deviceId", new BasicDBObject("$in", devices))
+        ));
         List<RFIDData> list = new ArrayList<>();
         for (Object obj : result) {
             Document doc = (Document)obj;
@@ -80,9 +89,10 @@ public class RFIDDataDao implements IRFIDDataDao {
         return list;
     }
 
-    public List<RFIDData> searchLatest() {
+    public List<RFIDData> searchLatest(List<String> devices) {
         MongoCollection<RFIDData> coll = mongoMgr.getCollection(MongoCollectionNames.Data);
-        FindIterable result = coll.find().sort(new Document("serverTime", -1)).limit(10);
+        FindIterable result = coll.find(new BasicDBObject("deviceId", new BasicDBObject("$in", devices)))
+                .sort(new Document("serverTime", -1)).limit(10);
 
         List<RFIDData> list = new ArrayList<>();
         for (Object obj : result) {

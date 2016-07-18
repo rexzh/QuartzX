@@ -7,6 +7,7 @@
             $location.path("/auth/");
         } else {//Login already, log out.
 			$rootScope.user = null;
+			$rootScope.token = null;
 			$scope.$emit('authExit', null);
 			$scope.loggedIn = false;
         }

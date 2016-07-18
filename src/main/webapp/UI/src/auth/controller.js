@@ -11,6 +11,7 @@
     $scope.authentication = function () {
         AuthResource.auth($scope.uid, $scope.pwd).then(function (data) {
             if (data.success) {
+				$rootScope.token = btoa(data.username + ':' + data.password);
 				$rootScope.user = data;
                 $location.path("/dashboard/");
 				$scope.$emit('authSuccess', data);

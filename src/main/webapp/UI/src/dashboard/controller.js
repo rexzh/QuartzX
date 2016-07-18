@@ -25,8 +25,7 @@
     var frequency = localStorage.getItem('frequency') || 5000;
 
     function refreshMonitor() {
-        SummaryResource.query().then(function (data) {
-            console.log(data);
+        SummaryResource.query($rootScope.token || '').then(function (data) {
             //$scope.statistic = data.statistic;
             $scope.data = data;
         }, function (err) {
@@ -41,7 +40,6 @@
     var sysinfo = {
         "database": {}, "dongle": {}, "service": {}, "server": {}
     };
-
 
     $scope.$on('$destroy', function () {
         if (angular.isDefined(p)) {

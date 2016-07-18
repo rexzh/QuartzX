@@ -71,27 +71,30 @@
     	}
 	});
 
-	svc.factory('SummaryResource', function($resource, $q) {
+	svc.factory('SummaryResource', function($resource, $http, $q) {
 	    return {
-    	    query: function () {
+    	    query: function (token) {
+				$http.defaults.headers.common['Authorization'] = 'Basic ' + token;
     	        var url = baseUrl + "/summary";
     	        return simpleQuery($resource, $q, url);
     	    }
     	}
 	});
 
-	svc.factory('MonitorResource', function($resource, $q) {
+	svc.factory('MonitorResource', function($resource, $http, $q) {
         return {
-            query: function () {
+            query: function (token) {
+				$http.defaults.headers.common['Authorization'] = 'Basic ' + token;
                 var url = baseUrl + "/monitor";
                 return simpleQuery($resource, $q, url);
             }
         }
     });
 
-    svc.factory('MessageResource', function($resource, $q) {
+    svc.factory('MessageResource', function($resource, $http, $q) {
         return {
-            query: function () {
+            query: function (token) {
+				$http.defaults.headers.common['Authorization'] = 'Basic ' + token;
                 var url = baseUrl + "/message";
                 return arrayQuery($resource, $q, url);
             }

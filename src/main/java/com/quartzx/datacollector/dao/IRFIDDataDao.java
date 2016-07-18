@@ -12,5 +12,6 @@ public interface IRFIDDataDao {
 
     long count();
     List<Long> dataInHour();
+    List<RFIDData> dataInRange(int seconds);
     List<RFIDData> searchLatest();
 }

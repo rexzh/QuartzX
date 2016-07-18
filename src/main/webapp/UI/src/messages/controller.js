@@ -1,4 +1,4 @@
-﻿app.controller('MessagesCtrl', function ($scope, $interval, $L, MessageResource, timeFormatter, resetMenu) {
+﻿app.controller('MessagesCtrl', function ($scope, $rootScope, $interval, $L, MessageResource, timeFormatter, resetMenu) {
     var mapStatusType = {
         "Normal": 'success',
         "High": 'block',
@@ -16,7 +16,7 @@
     var count = localStorage.getItem('msgCount') || 10;
 
     function refresh() {
-        MessageResource.query().then(function (data) {
+        MessageResource.query($rootScope.token || '').then(function (data) {
             var l = [];
             for (var i = 0; i < data.length; i++) {
                 var m = data[i];

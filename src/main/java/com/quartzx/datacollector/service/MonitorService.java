@@ -2,6 +2,8 @@ package com.quartzx.datacollector.service;
 
 import com.quartzx.datacollector.dao.IRFIDDataDao;
 import com.quartzx.datacollector.model.MonitorData;
+import com.quartzx.datacollector.model.RFIDData;
+import com.quartzx.datacollector.model.UserData;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -17,7 +19,28 @@ public class MonitorService implements IMonitorService {
     @Inject
     private IRFIDDataDao _dao;
 
-    public MonitorData analysis(){
+    public MonitorData analysis(UserData user, int seconds){
+        //TODO:
+        MonitorData m = new MonitorData();
+
+        List<RFIDData> list = _dao.dataInRange(seconds);
+        HashMap<Long, Integer> map = new HashMap<>();
+        for (RFIDData data : list) {
+            long timestamp = data.getServerTime();
+            long trunc = timestamp - timestamp % (60 * 60 * 1000);
+            if (map.containsKey(trunc)) {
+                int c = map.get(trunc);
+                map.put(trunc, c + 1);
+            } else {
+                map.put(trunc, 1);
+            }
+        }
+        //TODO:
+        return m;
+    }
+
+    public MonitorData analysis(UserData user){
+        //TODO:
         MonitorData m = new MonitorData();
 
         List<Long> list = _dao.dataInHour();

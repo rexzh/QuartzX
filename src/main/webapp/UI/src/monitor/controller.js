@@ -1,4 +1,4 @@
-﻿app.controller('MonitorCtrl', function ($scope, $interval, MonitorResource, $location, $L, resetMenu) {
+﻿app.controller('MonitorCtrl', function ($scope, $rootScope, $interval, MonitorResource, $location, $L, resetMenu) {
 
 
     $scope.resetMenu = resetMenu;
@@ -10,7 +10,7 @@
 
 
     function refreshMonitor() {
-        MonitorResource.query().then(function (data) {
+        MonitorResource.query($rootScope.token || '').then(function (data) {
             var x = [];
             var r = data.minuteAggregateMap;
             for(var p in r) {

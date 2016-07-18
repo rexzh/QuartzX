@@ -59,6 +59,27 @@ public class RFIDDataDao implements IRFIDDataDao {
         return list;
     }
 
+    public List<RFIDData> dataInRange(int seconds){
+        MongoCollection coll = mongoMgr.getCollection(MongoCollectionNames.Data);
+        Date d = new Date();
+        long ep = d.toInstant().toEpochMilli() - 1000 * seconds;
+
+        FindIterable result = coll.find(Filters.gt("serverTime", ep));
+        List<RFIDData> list = new ArrayList<>();
+        for (Object obj : result) {
+            Document doc = (Document)obj;
+            RFIDData data = new RFIDData();
+            data.setId(doc.getString("deviceId"));
+            data.setTagId(doc.getString("tagId"));
+            data.setServerTime(doc.getLong("serverTime"));
+            data.setDeviceTime(doc.getLong("deviceTime"));
+
+            list.add(data);
+        }
+
+        return list;
+    }
+
     public List<RFIDData> searchLatest() {
         MongoCollection<RFIDData> coll = mongoMgr.getCollection(MongoCollectionNames.Data);
         FindIterable result = coll.find().sort(new Document("serverTime", -1)).limit(10);

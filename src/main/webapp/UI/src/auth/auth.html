@@ -1,0 +1,18 @@
+﻿<ul class="breadcrumb">
+	<li>
+		<i class="icon-home"></i>
+		<a href="#/dashboard" ng-click="resetMenu()">{{home}}</a> 
+		<i class="icon-angle-right"></i>
+	</li>
+	<li><a>{{auth}}</a></li>
+</ul>
+
+<div class="row-fluid">
+	<label>{{usernameLabel}}:</label>
+	<input size="16" type="text" ng-model="uid"/>
+	<br />
+	<label>{{passwordLabel}}:</label>
+    <input size="16" type="password" ng-model="pwd"/>
+    <br />
+    <button class="btn btn-primary" ng-click="authentication()" type="button">{{ok}}</button>
+</div>

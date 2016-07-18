@@ -1,5 +1,22 @@
-﻿app.controller('NavCtrl', function ($scope, $L) {
+﻿app.controller('NavCtrl', function ($rootScope, $scope, $location, $L) {
     $scope.brand = $L("QuartzX");
+	$scope.loggedIn = false;
+
+    $scope.auth = function(){
+        if(!$rootScope.user) {//Not login, goto login page.
+            $location.path("/auth/");
+        } else {//Login already, log out.
+			$rootScope.user = null;
+			$scope.$emit('authExit', null);
+			$scope.loggedIn = false;
+        }
+    };
+
+    $rootScope.$on('authSuccess', function(evt, args) {
+		$scope.loggedIn = true;
+		$scope.username = args.username;
+		console.log(args);
+    });
 });
 
 app.controller('MenuCtrl', function ($rootScope, $scope, $interval, $L, gritter) {
@@ -32,8 +49,4 @@ app.controller('MenuCtrl', function ($rootScope, $scope, $interval, $L, gritter)
     $rootScope.$on('authError', function (evt, args) {
         gritter.push($L('Authentication Fail'), args, 'gritter-red');
     });
-
-    var ajaxError;
-    var pointError;
-    var notification = $('#msg').first();
 });

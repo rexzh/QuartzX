@@ -4,7 +4,8 @@ package com.quartzx.datacollector.utility;
  * Created by zling on 6/20/2016.
  */
 public enum MongoCollectionNames {
-    Data("data");
+    Data("data"),
+    Users("users");
 
     public String getCode() {
         return code;

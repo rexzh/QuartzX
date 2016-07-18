@@ -22,14 +22,6 @@ app.config(function ($routeProvider, $LProvider) {
             templateUrl: './src/monitor/monitor.html',
             controller: 'MonitorCtrl'
         }).
-        when('/block/:boxId/:blockId/', {
-            templateUrl: './src/block/block.html',
-            controller: 'BlockCtrl'
-        }).
-        when('/sensor/:boxId/:blockId/:sensorId', {
-            templateUrl: './src/sensor/sensor.html',
-            controller: 'SensorCtrl'
-        }).
         when('/messages/', {
             templateUrl: './src/messages/messages.html',
             controller: 'MessagesCtrl'
@@ -42,14 +34,6 @@ app.config(function ($routeProvider, $LProvider) {
             templateUrl: './src/settings/settings.html',
             controller: 'SettingsCtrl'
         }).
-        when('/management/', {
-            templateUrl: './src/management/management.html',
-            controller: 'ManagementCtrl'
-        }).
-        when('/history/:boxId/:blockId/:sensorId', {
-            templateUrl: './src/history/history.html',
-            controller: 'HistoryCtrl'
-        }).
         when('/about/', {
             templateUrl: './src/about/about.html',
             controller: 'AboutCtrl'
@@ -57,10 +41,6 @@ app.config(function ($routeProvider, $LProvider) {
         when('/auth/', {
             templateUrl: './src/auth/auth.html',
             controller: 'AuthCtrl'
-        }).
-        when('/chgpwd/', {
-            templateUrl: './src/chgpwd/chgpwd.html',
-            controller: 'ChgpwdCtrl'
         }).
         otherwise({
             redirectTo: '/dashboard/'

@@ -55,6 +55,21 @@
 
         return delay.promise;
     };
+	
+	svc.factory('AuthResource', function($http, $q) {
+	    return {
+    	    auth: function (uid, pwd) {
+    	        var url = baseUrl + "/user";    	        
+	            var delay = $q.defer();
+	            $http.post(url, {'username': uid, 'password': pwd}).success(function (data, status) {
+	                delay.resolve(data);
+	            }).error(function (data, status) {
+	                delay.reject(data);
+	            });
+	            return delay.promise;
+    	    }
+    	}
+	});
 
 	svc.factory('SummaryResource', function($resource, $q) {
 	    return {

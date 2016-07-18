@@ -37,6 +37,19 @@
 					<span class="icon-bar"></span>
 				</a>
 				<a class="brand"><img src="img/logo_white.png" style="height: 36px" /><span>&nbsp;&nbsp;{{brand}}</span></a>
+
+                <div class="nav-no-collapse header-nav">
+                    <ul class="nav pull-right">
+                        <li class="dropdown">
+                            <a ng-if="loggedIn" class="btn" ng-click="auth()">                                
+                                <i class="halflings-icon white user"></i> {{username}}  Logout
+                            </a>
+							<a ng-if="!loggedIn" class="btn" ng-click="auth()">
+                                Login
+                            </a>
+                        </li>
+                    </ul>
+                </div>
 			</div>
 		</div>
 	</div>
@@ -149,6 +162,7 @@
     <script src="src/monitor/controller.js"></script>    
     <script src="src/messages/controller.js"></script>
     <script src="src/settings/controller.js"></script>
+    <script src="src/auth/controller.js"></script>
     <script src="src/about/controller.js"></script>
 </body>
 </html>

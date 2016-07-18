@@ -25,6 +25,6 @@ public class MonitorResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response summary(@Context HttpHeaders headers) {
         UserData data = BasicAuthentication.getUserDate(headers);
-        return Response.ok().entity(service.analysis(data)).build();
+        return Response.ok().entity(service.analysis(data, 86400)).build();//Note: One day.
     }
 }

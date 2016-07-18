@@ -3,6 +3,7 @@
 	$scope.loggedIn = false;
 
     $scope.auth = function(){
+        $rootScope.path = $location.$$path;
         if(!$rootScope.user) {//Not login, goto login page.
             $location.path("/auth/");
         } else {//Login already, log out.

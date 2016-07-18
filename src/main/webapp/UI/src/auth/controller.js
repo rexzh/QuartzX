@@ -13,7 +13,7 @@
             if (data.success) {
 				$rootScope.token = btoa(data.username + ':' + data.password);
 				$rootScope.user = data;
-                $location.path("/dashboard/");
+                $location.path($rootScope.path);
 				$scope.$emit('authSuccess', data);
             } else {
                 $scope.$emit('authError', $L('Authentication Fail'));

@@ -11,12 +11,19 @@
 
     function refreshMonitor() {
         MonitorResource.query($rootScope.token || '').then(function (data) {
-            var x = [];
-            var r = data.minuteAggregateMap;
-            for(var p in r) {
-                x.push([p, r[p]]);
+            var r = data.aggregateMap;
+            var bars = [];
+
+            for(var d in r) {
+                var x = [];
+                var agg = r[d];
+                for(var p in agg) {
+                    x.push([p, agg[p]]);
+                }
+                bars.push({"data": x, "label": d});
             }
-            $scope.data = [{"data": x, "label": $L("RFID")}];
+
+            $scope.data = bars;
         }, function (err) {
 
         });

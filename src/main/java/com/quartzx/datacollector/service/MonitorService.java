@@ -24,30 +24,37 @@ public class MonitorService implements IMonitorService {
 
     public MonitorData analysis(UserData user, int seconds) {
         UserData ud = _usrDao.getUserData(user.getUsername());
-        //TODO:
+
         MonitorData m = new MonitorData();
+        HashMap<String, HashMap<Long, Integer>> map = new HashMap<>();
 
         if (ud.getPassword().equals(user.getPassword())) {
             List<RFIDData> list = _rfidDao.dataInRange(ud.getDevices(), seconds);
-            HashMap<Long, Integer> map = new HashMap<>();
+            for(String device : ud.getDevices()){
+                map.put(device, new HashMap<>());
+            }
+
             for (RFIDData data : list) {
+                HashMap<Long, Integer> agg = map.get(data.getId());
                 long timestamp = data.getServerTime();
                 long trunc = timestamp - timestamp % (60 * 60 * 1000);
-                if (map.containsKey(trunc)) {
-                    int c = map.get(trunc);
-                    map.put(trunc, c + 1);
+                if (agg.containsKey(trunc)) {
+                    int c = agg.get(trunc);
+                    agg.put(trunc, c + 1);
                 } else {
-                    map.put(trunc, 1);
+                    agg.put(trunc, 1);
                 }
             }
-            //TODO:
         }
+
+        m.setAggregateMap(map);
         return m;
     }
 
+    /*
+    //TODO:Remove
     public MonitorData analysis(UserData user) {
         UserData ud = _usrDao.getUserData(user.getUsername());
-        //TODO:
         MonitorData m = new MonitorData();
 
         if (ud.getPassword().equals(user.getPassword())) {
@@ -80,4 +87,5 @@ public class MonitorService implements IMonitorService {
         }
         return m;
     }
+    */
 }

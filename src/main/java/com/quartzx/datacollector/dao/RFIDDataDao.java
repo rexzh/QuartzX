@@ -44,28 +44,7 @@ public class RFIDDataDao implements IRFIDDataDao {
         return collection.count(new BasicDBObject("deviceId", new BasicDBObject("$in", devices)));
     }
 
-    public List<Long> dataInHour(List<String> devices) {
-        //TODO:
-        MongoCollection coll = mongoMgr.getCollection(MongoCollectionNames.Data);
-        Date d = new Date();
-        long ep = d.toInstant().toEpochMilli() - 1000 * 3600;
-
-        FindIterable result = coll.find(Filters.and(
-                Filters.gt("serverTime", ep),
-                new BasicDBObject("deviceId", new BasicDBObject("$in", devices))
-        ));
-        List<Long> list = new ArrayList<>();
-        for (Object obj : result) {
-            Document doc = (Document) obj;
-            Long time = doc.getLong("serverTime");
-            list.add(time);
-        }
-
-        return list;
-    }
-
-    public List<RFIDData> dataInRange(List<String> devices, int seconds){
-        //TODO:
+    public List<RFIDData> dataInRange(List<String> devices, int seconds) {
         MongoCollection coll = mongoMgr.getCollection(MongoCollectionNames.Data);
         Date d = new Date();
         long ep = d.toInstant().toEpochMilli() - 1000 * seconds;

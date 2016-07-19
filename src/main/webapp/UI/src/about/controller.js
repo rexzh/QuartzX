@@ -3,6 +3,8 @@
     $scope.about = $L("About");
     $scope.quartzx = $L("QuartzX");
     $scope.version = $L("Version");
+    $scope.address = $L("Address");
+    $scope.corporation = $L("Corporation");
 
     $scope.resetMenu = resetMenu;
 

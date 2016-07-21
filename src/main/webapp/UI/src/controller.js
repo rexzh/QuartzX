@@ -2,6 +2,15 @@
     $scope.brand = $L("QuartzX");
 	$scope.loggedIn = false;
 
+	var user = JSON.parse(localStorage.getItem('user'));
+	var token = localStorage.getItem('token');
+	if(user && token) {
+	    $rootScope.user = user;
+        $rootScope.token = token;
+        $scope.username = user.username;
+        $scope.loggedIn = true;
+	}
+
     $scope.auth = function(){
         $rootScope.path = $location.$$path;
         if(!$rootScope.user) {//Not login, goto login page.
@@ -9,6 +18,10 @@
         } else {//Login already, log out.
 			$rootScope.user = null;
 			$rootScope.token = null;
+
+			localStorage.removeItem('user');
+			localStorage.removeItem('token');
+
 			$scope.$emit('authExit', null);
 			$scope.loggedIn = false;
         }
@@ -17,7 +30,6 @@
     $rootScope.$on('authSuccess', function(evt, args) {
 		$scope.loggedIn = true;
 		$scope.username = args.username;
-		console.log(args);
     });
 });
 

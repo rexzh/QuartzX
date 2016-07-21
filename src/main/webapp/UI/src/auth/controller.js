@@ -14,6 +14,10 @@
 				$rootScope.token = btoa(data.username + ':' + data.password);
 				$rootScope.user = data;
                 $location.path($rootScope.path);
+
+                localStorage.setItem('user', JSON.stringify(data));
+                localStorage.setItem('token', $rootScope.token);
+
 				$scope.$emit('authSuccess', data);
             } else {
                 $scope.$emit('authError', $L('Authentication Fail'));

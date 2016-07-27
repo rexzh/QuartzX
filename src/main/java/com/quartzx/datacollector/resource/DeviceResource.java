@@ -3,7 +3,6 @@ package com.quartzx.datacollector.resource;
 import com.quartzx.datacollector.model.UserData;
 import com.quartzx.datacollector.service.IDeviceService;
 import com.quartzx.datacollector.utility.BasicAuthentication;
-import com.sun.deploy.net.HttpRequest;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;

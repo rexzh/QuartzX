@@ -13,6 +13,7 @@ import javax.inject.Named;
 import org.bson.Document;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Rex on 2016/7/18.
@@ -40,5 +41,20 @@ public class UserDataDao implements IUserDataDao {
         }
 
         return data;
+    }
+
+    public List<String> getDeviceList(){
+        List<String> devices = new ArrayList<>();
+        MongoCollection coll = mongoMgr.getCollection(MongoCollectionNames.Users);
+        FindIterable result = coll.find();
+        for (Object obj : result) {
+            Document doc = (Document)obj;
+            ArrayList arr = (ArrayList)doc.get("devices");
+
+            for(Object device : arr){
+                devices.add((String)device);
+            }
+        }
+        return devices;
     }
 }

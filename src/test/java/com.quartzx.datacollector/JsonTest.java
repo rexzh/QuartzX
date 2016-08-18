@@ -52,4 +52,17 @@ public class JsonTest {
         long ep = data.getDeviceTime();
         assertEquals(1466786626457L, ep);
     }
+
+    @Test
+    public void testParseRFIDDataArray(){
+        String json = "[{\"id\":\"12345\",\"timestamp\":\"2016-06-24T16:43:46.457Z\",\"tagId\":\"00310001000000000000003400C6000000000000000000000C123456789999555522221111\"}]";
+        RFIDData[] arr = JsonConverter.toObject(json, RFIDData[].class);
+        assertEquals(1, arr.length);
+        RFIDData data = arr[0];
+        assertEquals("12345", data.getId());
+        assertEquals("00310001000000000000003400C6000000000000000000000C123456789999555522221111", data.getTagId());
+
+        long ep = data.getDeviceTime();
+        assertEquals(1466786626457L, ep);
+    }
 }

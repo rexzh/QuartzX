@@ -6,6 +6,7 @@ import com.quartzx.datacollector.utility.JsonConverter;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.util.List;
 
 /**
  * Created by zling on 6/20/2016.
@@ -16,8 +17,8 @@ public class CollectorService implements ICollectorService {
     @Inject
     private IRFIDDataDao dao;
 
-    public String persistRecord(String json) {
-        RFIDData data = JsonConverter.toObject(json, RFIDData.class);
+    public List<String> persistRecords(String json) {
+        RFIDData[] data = JsonConverter.toObject(json, RFIDData[].class);
 
         return dao.persist(data);
     }

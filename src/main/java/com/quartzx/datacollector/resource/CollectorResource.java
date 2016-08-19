@@ -6,6 +6,7 @@ import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.List;
 
 /**
  * Created by zling on 6/20/2016.
@@ -19,7 +20,7 @@ public class CollectorResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response upload(String data) {
-        String id = service.persistRecord(data);
-        return Response.ok().entity(id).build();
+        List<String> ids = service.persistRecords(data);
+        return Response.ok().entity(ids).build();
     }
 }

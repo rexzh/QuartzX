@@ -26,17 +26,23 @@ public class RFIDDataDao implements IRFIDDataDao {
     @Inject
     MongoDBManager mongoMgr;
 
-    public String persist(RFIDData data) {
+    public List<String> persist(RFIDData[] array) {
         MongoCollection collection = mongoMgr.getCollection(MongoCollectionNames.Data);
-        Document doc = new Document()
-                .append("deviceId", data.getId())
-                .append("tagId", data.getTagId())
-                .append("deviceTime", data.getDeviceTime())
-                .append("serverTime", ZonedDateTime.now().toInstant().toEpochMilli());
+        List<String> ids = new ArrayList<>();
 
-        collection.insertOne(doc);
+        for(RFIDData data : array) {
+            Document doc = new Document()
+                    .append("deviceId", data.getId())
+                    .append("tagId", data.getTagId())
+                    .append("deviceTime", data.getDeviceTime())
+                    .append("serverTime", ZonedDateTime.now().toInstant().toEpochMilli());
 
-        return doc.get("_id").toString();
+            collection.insertOne(doc);
+
+            String id = doc.get("_id").toString();
+            ids.add(id);
+        }
+        return ids;
     }
 
     public long count(List<String> devices) {

@@ -93,4 +93,42 @@ public class RFIDDataDao implements IRFIDDataDao {
 
         return list;
     }
+
+    public List<RFIDData> searchByTag(String tagId){
+        MongoCollection coll = mongoMgr.getCollection(MongoCollectionNames.Data);
+        FindIterable result = coll.find(Filters.eq("tagId", tagId));
+
+        List<RFIDData> list = new ArrayList<>();
+        for (Object obj : result) {
+            Document doc = (Document)obj;
+            RFIDData data = new RFIDData();
+            data.setId(doc.getString("deviceId"));
+            data.setTagId(doc.getString("tagId"));
+            data.setServerTime(doc.getLong("serverTime"));
+            data.setDeviceTime(doc.getLong("deviceTime"));
+
+            list.add(data);
+        }
+        return list;
+    }
+
+    public List<RFIDData> searchByTimeRange(long start, long end){
+        MongoCollection coll = mongoMgr.getCollection(MongoCollectionNames.Data);
+        FindIterable result = coll.find(Filters.and(Filters.gt("serverTime", start), Filters.lt("serverTime", end)));
+
+        List<RFIDData> list = new ArrayList<>();
+
+        for (Object obj : result) {
+            Document doc = (Document)obj;
+            RFIDData data = new RFIDData();
+            data.setId(doc.getString("deviceId"));
+            data.setTagId(doc.getString("tagId"));
+            data.setServerTime(doc.getLong("serverTime"));
+            data.setDeviceTime(doc.getLong("deviceTime"));
+
+            list.add(data);
+        }
+
+        return list;
+    }
 }

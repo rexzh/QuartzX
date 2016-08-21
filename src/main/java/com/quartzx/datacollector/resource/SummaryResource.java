@@ -1,6 +1,7 @@
 package com.quartzx.datacollector.resource;
 
 import com.quartzx.datacollector.model.UserData;
+import com.quartzx.datacollector.service.ISummaryService;
 import com.quartzx.datacollector.service.SummaryService;
 import com.quartzx.datacollector.utility.BasicAuthentication;
 
@@ -17,7 +18,7 @@ import javax.ws.rs.core.Response;
 @Path("summary")
 public class SummaryResource {
     @Inject
-    private SummaryService service;
+    private ISummaryService service;
 
     /**
      * Method handling HTTP GET requests. The returned object will be sent

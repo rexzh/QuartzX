@@ -13,4 +13,7 @@ public interface IRFIDDataDao {
     long count(List<String> devices);
     List<RFIDData> dataInRange(List<String> devices, int seconds);
     List<RFIDData> searchLatest(List<String> devices);
+
+    List<RFIDData> searchByTag(String tagId);
+    List<RFIDData> searchByTimeRange(long start, long end);
 }

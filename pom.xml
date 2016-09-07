@@ -50,6 +50,17 @@
                 </configuration>
             </plugin>
         </plugins>
+
+        <filters>
+            <filter>./package/filter-${env}.properties</filter>
+        </filters>
+
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
     </build>
 
     <dependencyManagement>
@@ -203,4 +214,22 @@
         </dependency>
     </dependencies>
 
+    <profiles>
+        <profile>
+            <id>local</id>
+            <properties>
+                <env>local</env>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+
+        <profile>
+            <id>itg</id>
+            <properties>
+                <env>itg</env>
+            </properties>
+        </profile>
+    </profiles>
 </project>

@@ -4,6 +4,7 @@ import com.quartzx.datacollector.dao.IRFIDDataDao;
 import com.quartzx.datacollector.dao.IUserDataDao;
 import com.quartzx.datacollector.model.RFIDData;
 import com.quartzx.datacollector.model.UserData;
+import com.quartzx.datacollector.utility.FilterRule;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -20,7 +21,8 @@ public class MessageService implements IMessageService {
     @Inject
     IUserDataDao _usrDao;
 
-    public List<RFIDData> searchLatest(UserData user){
+    public List<RFIDData> searchLatest(UserData user, FilterRule rule){
+        //TODO:Rule
         UserData ud = _usrDao.getUserData(user.getUsername());
 
         if(ud.getPassword().equals(user.getPassword())) {

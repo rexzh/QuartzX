@@ -3,11 +3,13 @@ package com.quartzx.datacollector.resource;
 import com.quartzx.datacollector.model.UserData;
 import com.quartzx.datacollector.service.IMessageService;
 import com.quartzx.datacollector.utility.BasicAuthentication;
+import com.quartzx.datacollector.utility.FilterRule;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
@@ -23,8 +25,8 @@ public class MessageResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response search(@Context HttpHeaders headers) {
+    public Response search(@Context HttpHeaders headers, @QueryParam("rule") String rule) {
         UserData data = BasicAuthentication.getUserDate(headers);
-        return Response.ok().entity(service.searchLatest(data)).build();
+        return Response.ok().entity(service.searchLatest(data, FilterRule.fromCode(rule))).build();
     }
 }

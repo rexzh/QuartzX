@@ -5,6 +5,7 @@ import com.quartzx.datacollector.dao.IUserDataDao;
 import com.quartzx.datacollector.model.MonitorData;
 import com.quartzx.datacollector.model.RFIDData;
 import com.quartzx.datacollector.model.UserData;
+import com.quartzx.datacollector.utility.FilterRule;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -22,7 +23,8 @@ public class MonitorService implements IMonitorService {
     @Inject
     private IUserDataDao _usrDao;
 
-    public MonitorData analysis(UserData user, int seconds) {
+    public MonitorData analysis(UserData user, int seconds, FilterRule rule) {
+        //TODO:Rule
         UserData ud = _usrDao.getUserData(user.getUsername());
 
         MonitorData m = new MonitorData();
@@ -50,42 +52,4 @@ public class MonitorService implements IMonitorService {
         m.setAggregateMap(map);
         return m;
     }
-
-    /*
-    //TODO:Remove
-    public MonitorData analysis(UserData user) {
-        UserData ud = _usrDao.getUserData(user.getUsername());
-        MonitorData m = new MonitorData();
-
-        if (ud.getPassword().equals(user.getPassword())) {
-            List<Long> list = _rfidDao.dataInHour(ud.getDevices());
-            HashMap<Long, Integer> map = new HashMap<>();
-            for (Long timestamp : list) {
-                long trunc = timestamp - timestamp % (60 * 1000);
-                if (map.containsKey(trunc)) {
-                    int c = map.get(trunc);
-                    map.put(trunc, c + 1);
-                } else {
-                    map.put(trunc, 1);
-                }
-            }
-
-            if (!map.isEmpty()) {
-                Long min = Collections.min(map.keySet());
-                Long max = Collections.max(map.keySet());
-                if (max < min + 10 * 60 * 1000) {
-                    max = min + 10 * 60 * 1000;
-                }
-                for (long x = min; x <= max; x += 60 * 1000) {
-                    if (!map.containsKey(x)) {
-                        map.put(x, 0);
-                    }
-                }
-            }
-
-            m.setMinuteAggregateMap(map);
-        }
-        return m;
-    }
-    */
 }

@@ -53,7 +53,7 @@ public class RFIDDataDao implements IRFIDDataDao {
     public List<RFIDData> dataInRange(List<String> devices, int seconds) {
         MongoCollection coll = mongoMgr.getCollection(MongoCollectionNames.Data);
         Date d = new Date();
-        long ep = d.toInstant().toEpochMilli() - 1000 * seconds;
+        long ep = d.toInstant().toEpochMilli() - 1000 * (long)seconds;
 
         FindIterable result = coll.find(Filters.and(
                 Filters.gt("serverTime", ep),

@@ -108,7 +108,9 @@ public class RFIDDataDao implements IRFIDDataDao {
                 AggregateIterable<Document> iterable = coll.aggregate(
                         Arrays.asList(
                                 new BasicDBObject("$group", groupFields.append(
-                                        "time", new BasicDBObject(aggOperator, "$serverTime")))
+                                        "time", new BasicDBObject(aggOperator, "$serverTime"))),
+                                new BasicDBObject("$match", new BasicDBObject("deviceId", new BasicDBObject("$in", devices))),
+                                new BasicDBObject("$sort", new BasicDBObject("time", -1))
                         )
                 );
                 for(Document d : iterable) {

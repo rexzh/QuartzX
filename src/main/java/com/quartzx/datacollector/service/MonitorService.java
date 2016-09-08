@@ -24,14 +24,13 @@ public class MonitorService implements IMonitorService {
     private IUserDataDao _usrDao;
 
     public MonitorData analysis(UserData user, int seconds, FilterRule rule) {
-        //TODO:Rule
         UserData ud = _usrDao.getUserData(user.getUsername());
 
         MonitorData m = new MonitorData();
         HashMap<String, HashMap<Long, Integer>> map = new HashMap<>();
 
         if (ud.getPassword().equals(user.getPassword())) {
-            List<RFIDData> list = _rfidDao.dataInRange(ud.getDevices(), seconds);
+            List<RFIDData> list = _rfidDao.dataInRange(ud.getDevices(), seconds, rule);
             for(String device : ud.getDevices()){
                 map.put(device, new HashMap<>());
             }

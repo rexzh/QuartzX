@@ -7,6 +7,7 @@
     $scope.frequency = $L("Frequency");
     $scope.messageCount = $L("MessageCount");
     $scope.timezone = $L("TimeZone");
+    $scope.filterRule = $L("FilterRule");
     $scope.apply = $L("Apply");
     $scope.ms = $L("ms");
 
@@ -26,6 +27,14 @@
 
     var tz = parseFloat(localStorage.getItem('tz')) || 8;
     $('#timezone').first().val(tz);
+
+    var rl = localStorage.getItem('rl') || 'none';
+    $scope.selectedRule = $('a[data-rule="' + rl + '"]').first().text();
+
+    $scope.selFilterRule = function (rule) {
+        localStorage.setItem('rl', rule);
+        $scope.selectedRule = $('a[data-rule="' + rule + '"]').first().text();
+    }
 
     $scope.applyChange = function () {
         var f = $('#frequency').first().val();

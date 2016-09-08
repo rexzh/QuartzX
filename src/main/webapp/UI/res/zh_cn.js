@@ -66,6 +66,7 @@ l10n.addResource('zh_cn', {
     "Chart": "曲线图",
     "Data": "实时数据",
     "Frequency": "频率",
+    "FilterRule": "过滤规则",
     "Address": "上海市静安区共和新路966号1001室",
     "Corporation": "上海晶菁电子科技有限公司"
 });

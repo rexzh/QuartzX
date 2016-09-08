@@ -14,9 +14,10 @@
     $scope.resetMenu = resetMenu;
 
     var count = localStorage.getItem('msgCount') || 10;
+    var rule = localStorage.getItem('rl') || 'none';
 
     function refresh() {
-        MessageResource.query($rootScope.token || '').then(function (data) {
+        MessageResource.query($rootScope.token || '', rule).then(function (data) {
             var l = [];
             for (var i = 0; i < data.length; i++) {
                 var m = data[i];

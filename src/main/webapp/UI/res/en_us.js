@@ -66,6 +66,7 @@ l10n.addResource('en_us', {
     "Chart": "Line Chart",
     "Data": "Realtime Data",
     "Frequency": "Frequency",
+    "FilterRule": "FilterRule",
     "Address": "Room1001 No.966 GongHe Xin Road, Shanghai, China",
     "Corporation": "Shanghai Quartzx electronical technical Co.,Ltd."
 });

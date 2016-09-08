@@ -68,6 +68,25 @@
     </div>
 </div>
 
+<div class="row-fluid">
+    <div class="box blue span12">
+        <div class="box-header">
+            <h2><i class="icon-font"></i><span class="break"></span>{{filterRule}}</h2>
+        </div>
+        <div class="box-content">
+            <div class="btn-group">
+                <button class="btn btn">{{selectedRule}}</button>
+                <button class="btn btn dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                    <li><a data-rule="none" ng-click="selFilterRule('none')">None</a></li>
+                    <li><a data-rule="keepMax" ng-click="selFilterRule('keepMax')">KeepMax</a></li>
+                    <li><a data-rule="keepMin" ng-click="selFilterRule('keepMin')">KeepMin</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
 <button class="btn btn-primary" ng-click="applyChange()"><i class="icon-ok"></i>{{apply}}</button>
 
 

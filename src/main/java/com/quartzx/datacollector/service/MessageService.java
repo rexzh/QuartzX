@@ -22,11 +22,11 @@ public class MessageService implements IMessageService {
     IUserDataDao _usrDao;
 
     public List<RFIDData> searchLatest(UserData user, FilterRule rule){
-        //TODO:Rule
+
         UserData ud = _usrDao.getUserData(user.getUsername());
 
         if(ud.getPassword().equals(user.getPassword())) {
-            return _rfidDao.searchLatest(ud.getDevices());
+            return _rfidDao.searchLatest(ud.getDevices(), rule);
         } else {
             return new ArrayList<>();
         }

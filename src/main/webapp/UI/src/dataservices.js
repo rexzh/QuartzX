@@ -93,9 +93,9 @@
 
     svc.factory('MessageResource', function($resource, $http, $q) {
         return {
-            query: function (token) {
+            query: function (token, filter) {
 				$http.defaults.headers.common['Authorization'] = 'Basic ' + token;
-                var url = baseUrl + "/message";
+                var url = baseUrl + "/message?rule=" + filter;
                 return arrayQuery($resource, $q, url);
             }
         }

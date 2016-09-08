@@ -5,8 +5,8 @@ package com.quartzx.datacollector.utility;
  */
 public enum FilterRule {
     None("none"),
-    KeepMin("keepmin"),
-    KeepMax("keepmax");
+    KeepMin("keepMin"),
+    KeepMax("keepMax");
 
     public String getCode() {
         return code;
@@ -23,6 +23,6 @@ public enum FilterRule {
             if (rule.code.equals(code))
                 return rule;
         }
-        return null;
+        return None;
     }
 }

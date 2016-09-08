@@ -109,7 +109,7 @@ public class RFIDDataDao implements IRFIDDataDao {
                         Arrays.asList(
                                 new BasicDBObject("$group", groupFields.append(
                                         "time", new BasicDBObject(aggOperator, "$serverTime"))),
-                                new BasicDBObject("$match", new BasicDBObject("deviceId", new BasicDBObject("$in", devices))),
+                                new BasicDBObject("$match", new BasicDBObject("_id.deviceId", new BasicDBObject("$in", devices))),
                                 new BasicDBObject("$sort", new BasicDBObject("time", -1))
                         )
                 );

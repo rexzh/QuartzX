@@ -64,6 +64,8 @@ l10n.addResource('en_us', {
     "TimeZone": "Time Zone",
     "MessageCount": "Message Count",
     "Chart": "Line Chart",
+    "PieChart": "Pie Chart",
+    "BarChart": "Bar Chart",
     "Data": "Realtime Data",
     "Frequency": "Frequency",
     "FilterRule": "FilterRule",

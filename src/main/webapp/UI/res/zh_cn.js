@@ -64,6 +64,8 @@ l10n.addResource('zh_cn', {
     "TimeZone": "时区",
     "MessageCount": "消息数量",
     "Chart": "曲线图",
+    "PieChart": "饼图",
+    "BarChart": "柱状图",
     "Data": "实时数据",
     "Frequency": "频率",
     "FilterRule": "过滤规则",

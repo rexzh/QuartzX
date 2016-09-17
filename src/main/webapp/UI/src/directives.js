@@ -264,53 +264,38 @@
         };
     });
 
-    metro.directive('metroLineChart', function ($timeout) {
+    metro.directive('metroPieChart', function ($timeout) {
         return {
             restrict: 'AE',
             replace: true,
             scope: {
-                data: '=lcData',
-                tag: '@lcTag'
+                data: '=pcData',
+                tag: '@pcTag'
             },
             template: '<div></div>',
             compile: function (element, attrs) {
                 return function (scope, element, attrs) {
                     function draw() {
                         if (!scope.data) return;
-                        var minV = 99999, maxV = -99999, minT = new Date(2999, 12).getTime(), maxT = new Date(1970, 1).getTime();
-                        for (var i = 0; i < scope.data.length; i++) {
-                            var d = scope.data[i];
-                            if (d[1]< minV) minV = d[1];
-                            if (d[1] > maxV) maxV = d[1];
-                            if (d[0] < minT) minT = d[0];
-                            if (d[0] > maxT) maxT = d[0];
-                        }
+
                         $(element).empty();
-                        var plot = $.plot($(element),
-                           [{ data: scope.data, label: scope.tag }], {
-                               series: {
-                                   lines: {
-                                       show: true,
-                                       lineWidth: 2,
-                                   },
-                                   points: { show: true },
-                                   shadowSize: 2
-                               },
-                               grid: {
-                                   hoverable: true,
-                                   clickable: false,
-                                   tickColor: "#dddddd",
-                                   borderWidth: 0
-                               },
-                               yaxis: { min: minV, max: maxV },
-                               xaxis: {
-                                   mode: "time",
-                                   minTickSize: [1, "second"],
-                                   min: (new Date(minT)).getTime(),
-                                   max: (new Date(maxT)).getTime()
-                               },
-                               colors: ["#FA5833"]
-                           });
+                        var plot1 = $.plot($(element), scope.data, {
+                                gridPadding: {top:0, bottom:38, left:0, right:0},
+                                series: {
+                                     pie: {
+                                        show: true
+                                     }
+                                },
+                                legend:{
+                                    show:true,
+                                    placement: 'outside',
+                                    rendererOptions: {
+                                        numberRows: 1
+                                    },
+                                    location:'s',
+                                    marginTop: '15px'
+                                }
+                            });
                     }
                     $timeout(draw, 50);
                     scope.$watchGroup(['data'], draw, true);

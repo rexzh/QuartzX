@@ -66,6 +66,7 @@ l10n.addResource('en_us', {
     "Chart": "Line Chart",
     "PieChart": "Pie Chart",
     "BarChart": "Bar Chart",
+    "LineChart": "Line Chart",
     "Data": "Realtime Data",
     "Frequency": "Frequency",
     "FilterRule": "FilterRule",

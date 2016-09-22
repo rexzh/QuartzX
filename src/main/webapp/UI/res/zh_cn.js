@@ -66,6 +66,7 @@ l10n.addResource('zh_cn', {
     "Chart": "曲线图",
     "PieChart": "饼图",
     "BarChart": "柱状图",
+    "LineChart": "折线图",
     "Data": "实时数据",
     "Frequency": "频率",
     "FilterRule": "过滤规则",

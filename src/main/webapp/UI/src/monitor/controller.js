@@ -5,6 +5,7 @@
     $scope.monitor = $L("Monitor");
     $scope.pieChart = $L("PieChart");
     $scope.barChart = $L("BarChart");
+    $scope.lineChart = $L("LineChart");
 
     var frequency = localStorage.getItem('frequency') || 5000;
 
@@ -32,6 +33,30 @@
                 }
 
                 $scope.data = bars;
+            } else if($scope.chart == 'line') {
+                var hash = {};
+                var keys = [];
+                //console.log(r);
+                for(var d in r) {
+                    var agg = r[d];
+
+                    for(var p in agg) {
+                        //p, agg[p]
+                        if(hash[p]) {
+                            var s = hash[p];
+                            hash[p] = s + agg[p];
+                        } else {
+                            hash[p] = agg[p];
+                            keys.push(p);
+                        }
+                    }
+                }
+                keys.sort();
+                var lines = [];
+                for(var i = 0; i < keys.length; i++) {
+                    lines.push([keys[i], hash[[keys[i]]]]);
+                }
+                $scope.data = lines;
             } else { //pie
                 var pies = [];
                 for(var d in r) {

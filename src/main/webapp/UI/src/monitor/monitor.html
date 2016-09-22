@@ -13,10 +13,12 @@
 		<ul class="dropdown-menu">
 			<li><a data-chart="bar" ng-click="selChart('bar')">{{barChart}}</a></li>
 			<li><a data-chart="pie" ng-click="selChart('pie')">{{pieChart}}</a></li>
+			<li><a data-chart="line" ng-click="selChart('line')">{{lineChart}}</a></li>
 		</ul>
 	</div>
 </div>
 <div class="row-fluid">
     <div ng-if="chart=='bar'" metro-stack-chart sc-data="data" class="center" style="height:300px;"></div>
 	<div ng-if="chart=='pie'" metro-pie-chart pc-data="data" class="center" style="height:300px;"></div>
+	<div ng-if="chart=='line'" metro-line-chart lc-data="data" class="center" style="height:300px;"></div>
 </div>
